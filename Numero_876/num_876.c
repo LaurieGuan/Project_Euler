@@ -10,25 +10,43 @@ struct Branche {
         int tempC;
 };
 
+int puissance(int base, int exposant) {
+        int reponse;
+        
+        if (exposant == 0) {
+                reponse = 1;
+        }
+        else if (exposant == 1) {
+                reponse = base;
+        }
+        else {
+                reponse = base;
+                for (exposant--; exposant > 0; exposant--) {
+                        reponse = reponse * base;
+                }
+        }
+
+        return reponse;
+}
+
 int calculerVariableTemp(int temp, int nb1, int nb2) {
+        
         return 2 * (nb1 + nb2) - temp;
 
 }
 
 int fonctionABC(int a, int b, int c) {
-        struct Branche branche[100];
+        struct Branche branche[364];
         branche[0].tempA = a;
         branche[0].tempB = b;
         branche[0].tempC = c;
-        int differenceA;
-        int differenceB;
-        int differenceC;
-        int i;
-        int estRetour = 0;
+        int i
+        int n;
+        int solutionTrouvee = 0;
 
-        for (i = 1; branche[i].tempA != 0 || branche[i].tempB != 0 || branche[i].tempC != 0; i++) {
-                if (estRetour == 0) {
-                        
+        for (n = 0; solutionTrouvee == 1 || n < 5; n++) {
+
+                for (i = puissance(3, n); i
                         branche[i].a = branche[(i - 1)].tempA;
                         branche[i].b = branche[(i - 1)].tempB;
                         branche[i].c = branche[(i - 1)].tempC;
@@ -36,28 +54,6 @@ int fonctionABC(int a, int b, int c) {
                         branche[i].tempA = calculerVariableTemp(branche[i].a, branche[i].b, branche[i].c);
                         branche[i].tempB = calculerVariableTemp(branche[i].a, branche[i].c, branche[i].b);
                         branche[i].tempC = calculerVariableTemp(branche[i].b, branche[i].c, branche[i].a);
-                        
-                        differenceA = abs(0 - branche[i].tempA);
-                        differenceB = abs(0 - branche[i].tempB);
-                        differenceC = abs(0 - branche[i].tempC);
-
-                        if ((differenceA <= differenceB) && (differenceA <= differenceC)) {
-                                branche[i].tempB = branche[i].b;
-                                branche[i].tempC = branche[i].c;
-
-                        }
-                        else if ((differenceB <= differenceA) && (differenceB <= differenceC)) {
-                                branche[i].tempA = branche[i].a;
-                                branche[i].tempC = branche[i].c;
-
-                        }
-                        else if ((differenceC <= differenceB) && (differenceC <= differenceA)) {
-                                branche[i].tempB = branche[i].b;
-                                branche[i].tempA = branche[i].a;
-
-                        }
-                }
-
                 
         } 
 
@@ -68,9 +64,8 @@ int fonctionABC(int a, int b, int c) {
 }
 
 int main() {
-       fonctionABC(34, 2, 31);
-
-       return 0;
+        printf("%d\n", puissance(2, 8));
+        return 0;
 
 }
 
