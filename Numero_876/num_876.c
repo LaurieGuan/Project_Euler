@@ -5,9 +5,6 @@ struct Branche {
         int a;
         int b;
         int c;
-        int tempA;
-        int tempB;
-        int tempC;
 };
 
 int puissance(int base, int exposant) {
@@ -29,43 +26,54 @@ int puissance(int base, int exposant) {
         return reponse;
 }
 
-int calculerVariableTemp(int temp, int nb1, int nb2) {
+int calculerParametre(int temp, int nb1, int nb2) {
         
         return 2 * (nb1 + nb2) - temp;
 
 }
 
 int fonctionABC(int a, int b, int c) {
-        struct Branche branche[364];
-        branche[0].tempA = a;
-        branche[0].tempB = b;
-        branche[0].tempC = c;
-        int i
+        struct Branche branche[512];
+        branche[0].a = a;
+        branche[0].b = b;
+        branche[0].c = c;
+        int p;
         int n;
+        int dp;
         int solutionTrouvee = 0;
 
-        for (n = 0; solutionTrouvee == 1 || n < 5; n++) {
+        for (n = 1; solutionTrouvee == 0 && n < 5; n++) {
 
-                for (i = puissance(3, n); i
-                        branche[i].a = branche[(i - 1)].tempA;
-                        branche[i].b = branche[(i - 1)].tempB;
-                        branche[i].c = branche[(i - 1)].tempC;
+                dp = puissance(3, n);
 
-                        branche[i].tempA = calculerVariableTemp(branche[i].a, branche[i].b, branche[i].c);
-                        branche[i].tempB = calculerVariableTemp(branche[i].a, branche[i].c, branche[i].b);
-                        branche[i].tempC = calculerVariableTemp(branche[i].b, branche[i].c, branche[i].a);
-                
+                for (p = 1; puissance(3, n) + 1 > p; p += 3) {
+                        branche[p + dp].a = calculerParametre(branche[p].a, branche[p].b, branche[p].c);
+                        branche[p + dp].b = branche[p].b;
+                        branche[p + dp].c = branche[p].c;
+                        dp++;
+
+                        branche[p + dp].b = calculerParametre(branche[p].b, branche[p].a, branche[p].c);
+                        branche[p + dp].a = branche[p].a;
+                        branche[p + dp].c = branche[p].c;
+                        dp++;
+
+                        branche[p + dp].c = calculerParametre(branche[p].c, branche[p].b, branche[p].a);
+                        branche[p + dp].a = branche[p].a;
+                        branche[p + dp].b = branche[p].b;
+
+                        if (branche[p + dp - 2].a == 0 || branche[p + dp - 1].b == 0|| branche[p + dp].c == 0) {
+                                solutionTrouvee = 1;
+                        }
+                } 
         } 
 
-        printf("(%d, %d, %d, %d)", branche[0].tempA, branche[0].tempB, branche[0].tempC, i);
-
-        return 0;
+        return n + 1;
 
 }
 
 int main() {
-        printf("%d\n", puissance(2, 8));
+        printf("\n%d\n\n", fonctionABC(6, 10, 35));
+
         return 0;
 
 }
-
