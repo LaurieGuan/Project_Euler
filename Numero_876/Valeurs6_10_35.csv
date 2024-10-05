@@ -1,0 +1,23 @@
+Node 1,a:84 b:10 c:35
+Node 2,a:6 b:72 c:35
+Node 3,a:6 b:10 c:-3
+
+Node 4,a:84 b:228 c:35
+Node 5,a:84 b:10 c:153
+Node 6,a:208 b:72 c:35
+Node 7,a:6 b:72 c:121
+Node 8,a:8 b:10 c:-3
+Node 9,a:6 b:-4 c:-3
+
+Node 10,a:442 b:228 c:35
+Node 11,a:84 b:228 c:589
+Node 12,a:242 b:10 c:153
+Node 13,a:84 b:464 c:153
+Node 15,a:208 b:414 c:35
+Node 16,a:208 b:72 c:525
+Node 17,a:380 b:72 c:121
+Node 18,a:6 b:182 c:121
+Node 20,a:8 b:0 c:-3
+Node 21,a:8 b:10 c:39
+Node 22,a:-20 b:-4 c:-3
+Node 23,a:6 b:-4 c:7
